@@ -1,0 +1,7 @@
+/**
+
+Copyright (c) 2020 Kazylla
+
+This software is released under the MIT License.
+http://opensource.org/licenses/mit-license.php
+*/

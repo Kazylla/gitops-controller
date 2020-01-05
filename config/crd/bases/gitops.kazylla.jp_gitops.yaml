@@ -1,0 +1,89 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.4
+  creationTimestamp: null
+  name: gitops.gitops.kazylla.jp
+spec:
+  group: gitops.kazylla.jp
+  names:
+    kind: GitOps
+    listKind: GitOpsList
+    plural: gitops
+    singular: gitops
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: GitOps is the Schema for the gitops API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: GitOpsSpec defines the desired state of GitOps
+          properties:
+            aws_profile:
+              type: string
+            git_branch:
+              type: string
+            git_commit_email:
+              type: string
+            git_commit_name:
+              type: string
+            git_paths:
+              items:
+                type: string
+              type: array
+            git_release_branch:
+              type: string
+            git_repo:
+              type: string
+            image_path:
+              type: string
+            image_tag_format:
+              type: string
+          required:
+          - git_branch
+          - git_commit_email
+          - git_commit_name
+          - git_paths
+          - git_release_branch
+          - git_repo
+          - image_path
+          - image_tag_format
+          type: object
+        status:
+          description: GitOpsStatus defines the observed state of GitOps
+          properties:
+            current_tag:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              type: string
+          type: object
+      type: object
+  version: v1
+  versions:
+  - name: v1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

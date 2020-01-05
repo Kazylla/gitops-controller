@@ -1,0 +1,7 @@
+domain: kazylla.jp
+repo: github.com/kazylla/gitops-controller
+resources:
+- group: gitops
+  kind: GitOps
+  version: v1
+version: "2"

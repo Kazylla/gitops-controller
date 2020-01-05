@@ -1,0 +1,15 @@
+apiVersion: gitops.kazylla.jp/v1
+kind: GitOps
+metadata:
+  name: gitops-sample
+spec:
+  aws_profile: "default"
+
+  image_path: "999999999999.dkr.ecr.ap-northeast-1.amazonaws.com/xxx/xxx"
+  image_tag_format: "semantic"
+
+  git_repo: "https://github.com/xxx/xxx.git"
+  git_branch: "master"
+  git_paths: ["overlays/dev/kustomization.yaml"]
+  git_commit_name: "kazylla"
+  git_commit_email: "xxxxx@gmail.com"

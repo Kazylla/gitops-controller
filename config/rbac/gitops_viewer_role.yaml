@@ -1,0 +1,20 @@
+# permissions to do viewer gitops.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gitops-viewer-role
+rules:
+- apiGroups:
+  - gitops.kazylla.jp
+  resources:
+  - gitops
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - gitops.kazylla.jp
+  resources:
+  - gitops/status
+  verbs:
+  - get
