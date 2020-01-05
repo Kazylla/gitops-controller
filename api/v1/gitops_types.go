@@ -19,7 +19,7 @@ type GitOpsSpec struct {
 
 	GitRepo          string   `json:"git_repo"`
 	GitBranch        string   `json:"git_branch"`
-	GitReleaseBranch string   `json:"git_release_branch"`
+	GitReleaseBranch string   `json:"git_release_branch,omitempty"`
 	GitPaths         []string `json:"git_paths"`
 	GitCommitName    string   `json:"git_commit_name"`
 	GitCommitEmail   string   `json:"git_commit_email"`

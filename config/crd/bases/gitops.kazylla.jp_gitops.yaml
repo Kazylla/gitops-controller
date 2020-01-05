@@ -61,7 +61,6 @@ spec:
           - git_commit_email
           - git_commit_name
           - git_paths
-          - git_release_branch
           - git_repo
           - image_path
           - image_tag_format
