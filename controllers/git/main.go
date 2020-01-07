@@ -177,12 +177,16 @@ func (gitRepo *GitRepo) CommitTags(imageVers []version.ImageVersion) (string, er
 
 			imageTags := m["imageTags"].([]interface{})
 			for _, t := range imageTags {
+				var imageNewName string
 				imageTag := t.(map[interface{}]interface{})
 				imageName := imageTag["name"].(string)
-				if imageName != gitRepo.config.ImagePath {
+				if _, ok := imageTag["newName"]; ok {
+					imageNewName = imageTag["newName"].(string)
+				}
+				if imageName != gitRepo.config.ImagePath && imageNewName != gitRepo.config.ImagePath {
 					// continue if image name is not target
 					// (kustomize.yaml may have newTags for multiple images)
-					log.V(1).Info("image name is not target", "target", gitRepo.config.ImagePath, "yaml", imageName)
+					log.V(1).Info("image name is not target", "target", gitRepo.config.ImagePath, "yaml", fmt.Sprintf("%s,%s", imageName, imageNewName))
 					continue
 				}
 
