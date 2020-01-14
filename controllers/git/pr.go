@@ -2,6 +2,7 @@ package git
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 )
 
@@ -59,7 +60,8 @@ func parseRepoURL(repo string) (*RepoURL, error) {
 		return nil, fmt.Errorf("invalid repoURL string")
 	}
 
-	repoURL.RepoName = strings.TrimRight(repoURL.RepoName, ".git")
+	re := regexp.MustCompile(".git$")
+	repoURL.RepoName = re.ReplaceAllString(repoURL.RepoName, "")
 
 	return repoURL, nil
 }

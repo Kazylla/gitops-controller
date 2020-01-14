@@ -73,7 +73,7 @@ func (r *GitOpsReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	}
 
 	// get filtered tags
-	log.V(1).Info("scanning docker registry", "current_tag", gitOps.Status.CurrentTag)
+	log.Info("scanning docker registry", "image_tag_format", gitOps.Spec.ImageTagFormat, "current_tag", gitOps.Status.CurrentTag)
 	ecrRegistry := registry.NewRegistry(registry.Config{
 		Path:      gitOps.Spec.ImagePath,
 		TagFormat: tagFmt,
@@ -93,7 +93,7 @@ func (r *GitOpsReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 		result, _ := imageVers[i].Compare(imageVers[j].GetTag())
 		return result < 0
 	})
-	log.V(1).Info("scanning docker registry has succeeded", "new", len(imageVers))
+	log.Info("scanning docker registry has succeeded", "new", len(imageVers))
 
 	if len(imageVers) == 0 {
 		return ctrl.Result{}, nil
